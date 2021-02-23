@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %} 
+<h1>Register please:)</h1>
+<form action="/register/map" method="post">
+    <input name="domain" placeholder="Domain" type="text"/>
+    <input name="tocken" placeholder="Tocken" type="text"/>
+    <input type="submit" value="Register"/>
+</form>
+{% endblock %}
