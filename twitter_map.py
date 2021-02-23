@@ -2,16 +2,12 @@ import requests
 import json
 import folium
 from geopy.geocoders import Nominatim
-# from program import register
-# from program import take_elements
 
-# name = take_elements[0]
-# token = take_elements[1]
+
 def get_information(name, token):
 
     base_url = 'https://api.twitter.com/'
 
-    # bearer_token = 'AAAAAAAAAAAAAAAAAAAAAH7tMwEAAAAASSQEjZvKGl4bLt8CWxRd3BEHBzg%3DEsUX6N1SBtdBuZMkbKqQiMBGjW3yL5dGVZTjNXl3XVP1l06Qsg'
     bearer_token = token
 
     search_url = '{}1.1/friends/list.json'.format(base_url)
@@ -29,7 +25,6 @@ def get_information(name, token):
 
     json_response = response.json()
     return json_response
-# print(get_information("s_vakarchuk", 'AAAAAAAAAAAAAAAAAAAAAH7tMwEAAAAASSQEjZvKGl4bLt8CWxRd3BEHBzg%3DEsUX6N1SBtdBuZMkbKqQiMBGjW3yL5dGVZTjNXl3XVP1l06Qsg'))
 
 def write_to_file(name_1, token_1):
     """
@@ -38,8 +33,8 @@ def write_to_file(name_1, token_1):
     inf = get_information(name_1, token_1)
     with open("friends.json", "w") as file:
         return json.dump(inf, file, indent=4)
-# print(write_to_file("s_vakarchuk", 'AAAAAAAAAAAAAAAAAAAAAH7tMwEAAAAASSQEjZvKGl4bLt8CWxRd3BEHBzg%3DEsUX6N1SBtdBuZMkbKqQiMBGjW3yL5dGVZTjNXl3XVP1l06Qsg'))
-# print(write_to_file("s_vakarchuk",'AAAAAAAAAAAAAAAAAAAAH7tMwEAAAAASSQEjZvKGl4bLt8CWxRd3BEHBzg%3DEsUX6N1SBtdBuZMkbKqQiMBGjW3yL5dGVZTjNXl3XVP1l06Qsg'))
+
+
 def get_data(file):
     file_1 = open(file, "r", encoding="utf-8")
     data = json.load(file_1)['users']
@@ -49,7 +44,7 @@ def get_data(file):
         location = dictionary['location']
         information.append([name, location])
     return information
-# print(get_data("friends.json"))
+
 
 def find_coordinates(file):
     geolocator = Nominatim(user_agent="Maps")
@@ -76,5 +71,4 @@ def change_map(file):
                 continue
         except IndexError:
             continue
-    # your_map.save("Your_map.html")
     return your_map
